@@ -2,326 +2,325 @@
 SPDX-License-Identifier: Apache-2.0 -->
 
 {{ define "users" }}
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Users</title>
-    {{ template "header" }}
-</head>
-<body>
-{{ template "navbar" . }}
-<div class="main-content pt-3">
-    <div class="container-fluid">
-        <div class="row-mb-3 p-3">
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <title>Users</title>
+      {{ template "header" }}
+    </head>
+    <body>
+      {{ template "navbar" . }}
+      <div class="main-content pt-3">
+        <div class="container-fluid">
+          <div class="row-mb-3 p-3">
             <div class="col-lg-12 mx-auto py-3">
-                {{ template "breadcrumb" . }}
-                <div class="row">
-                    <div class="buttons mb-3">
-                        <button class="btn body-button" type="button" onclick="openModal('single')">
-                            Add User
-                        </button>
-                        <button class="btn body-button" type="button" onclick="openModal('bulk')">
-                            Add Users
-                        </button>
-                        <!-- modals -->
-                        <!-- add user modal -->
-                        <div
-                                class="modal fade"
-                                id="addUserModal"
-                                tabindex="-1"
-                                role="dialog"
-                                aria-labelledby="addUserModalLabel"
-                                aria-hidden="true"
-                        >
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title" id="addUserModalLabel">Add User</h1>
-                                        <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <form id="userform">
-                                        <div class="modal-body">
-                                            <div id="alertMessage"></div>
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input
-                                                        type="text"
-                                                        class="form-control name-field"
-                                                        name="name"
-                                                        id="name"
-                                                        placeholder="User Name"
-                                                />
-                                                <div id="nameError" class="text-danger"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label">Identity</label>
-                                                <input
-                                                        type="email"
-                                                        class="form-control email-field"
-                                                        name="identity"
-                                                        id="email"
-                                                        placeholder="User Email"
-                                                />
-                                                <div id="emailError" class="text-danger"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="secret" class="form-label">Secret</label>
-                                                <input
-                                                        type="text"
-                                                        class="form-control secret-field"
-                                                        name="secret"
-                                                        id="secret"
-                                                        placeholder="User Password"
-                                                />
-                                                <div id="secretError" class="text-danger"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="userTags" class="form-label">Tags</label>
-                                                <div id="usersTagsList" onclick="deleteItem(event)"></div>
-                                                <input
-                                                        type="text"
-                                                        class="form-control tags-field"
-                                                        name="tags"
-                                                        id="userTags"
-                                                        aria-describedby="tagHelp"
-                                                        onkeydown="addItem(event, 'userTags', 'usersTagsList')"
-                                                        placeholder="Add a tag"
-                                                />
-                                                <div id="tagHelp" class="form-text">
-                                                    Enter user tags as a string slice.
-                                                </div>
-                                                <div id="tagsError" class="text-danger"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="metadata" class="form-label">Metadata</label>
-                                                <div class="metadata-field">
-                                                    <textarea name="metadata" id="metadata"></textarea>
-                                                </div>
-
-                                                <div id="metadataHelp" class="form-text">
-                                                    Enter user metadata in JSON format.
-                                                </div>
-                                                <div id="metadataError" class="text-danger"></div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                Cancel
-                                            </button>
-                                            <button
-                                                    type="submit"
-                                                    class="btn body-button"
-                                                    id="create-user-button"
-                                                    onclick="submitItemList('userTags', 'usersTagsList')"
-                                            >
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+              {{ template "breadcrumb" . }}
+              <div class="row">
+                <div class="buttons mb-3">
+                  <button class="btn body-button" type="button" onclick="openModal('single')">
+                    Add User
+                  </button>
+                  <button class="btn body-button" type="button" onclick="openModal('bulk')">
+                    Add Users
+                  </button>
+                  <!-- modals -->
+                  <!-- add user modal -->
+                  <div
+                    class="modal fade"
+                    id="addUserModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="addUserModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title" id="addUserModalLabel">Add User</h1>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
                         </div>
-
-                        <!-- add users modal -->
-                        <div
-                                class="modal fade"
-                                id="addUsersModal"
-                                tabindex="-1"
-                                role="dialog"
-                                aria-labelledby="addUsersModalLabel"
-                                aria-hidden="true"
-                        >
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title" id="addUsersModalLabel">Add Users</h1>
-                                        <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <form enctype="multipart/form-data" id="bulkusersform">
-                                        <div class="modal-body">
-                                            <div id="alertBulkMessage"></div>
-                                            <div class="form-group mb-3">
-                                                <label for="usersFile">
-                                                    Add csv file containing users names and passwords. Find a sample csv
-                                                    file
-                                                    <a
-                                                            href="https://github.com/absmach/magistrala-ui/blob/main/samples/users.csv"
-                                                            target="_blank"
-                                                    >
-                                                        here
-                                                    </a>
-                                                </label>
-                                                <input
-                                                        type="file"
-                                                        class="form-control-file"
-                                                        id="usersFile"
-                                                        name="usersFile"
-                                                        required
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                Cancel
-                                            </button>
-                                            <button type="submit" value="upload" class="btn body-button">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
+                        <form id="userform">
+                          <div class="modal-body">
+                            <div id="alertMessage"></div>
+                            <div class="mb-3">
+                              <label for="name" class="form-label">Name</label>
+                              <input
+                                type="text"
+                                class="form-control name-field"
+                                name="name"
+                                id="name"
+                                placeholder="User Name"
+                              />
+                              <div id="nameError" class="text-danger"></div>
                             </div>
-                        </div>
-                        <!-- modals end -->
+                            <div class="mb-3">
+                              <label for="email" class="form-label">Identity</label>
+                              <input
+                                type="email"
+                                class="form-control email-field"
+                                name="identity"
+                                id="email"
+                                placeholder="User Email"
+                              />
+                              <div id="emailError" class="text-danger"></div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="secret" class="form-label">Secret</label>
+                              <input
+                                type="text"
+                                class="form-control secret-field"
+                                name="secret"
+                                id="secret"
+                                placeholder="User Password"
+                              />
+                              <div id="secretError" class="text-danger"></div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="userTags" class="form-label">Tags</label>
+                              <div id="usersTagsList" onclick="deleteItem(event)"></div>
+                              <input
+                                type="text"
+                                class="form-control tags-field"
+                                name="tags"
+                                id="userTags"
+                                aria-describedby="tagHelp"
+                                onkeydown="addItem(event, 'userTags', 'usersTagsList')"
+                                placeholder="Add a tag"
+                              />
+                              <div id="tagHelp" class="form-text">
+                                Enter user tags as a string slice.
+                              </div>
+                              <div id="tagsError" class="text-danger"></div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="metadata" class="form-label">Metadata</label>
+                              <div class="metadata-field">
+                                <textarea name="metadata" id="metadata"></textarea>
+                              </div>
+
+                              <div id="metadataHelp" class="form-text">
+                                Enter user metadata in JSON format.
+                              </div>
+                              <div id="metadataError" class="text-danger"></div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              class="btn body-button"
+                              id="create-user-button"
+                              onclick="submitItemList('userTags', 'usersTagsList')"
+                            >
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                    <div class="table-responsive table-container">
-                        {{ template "tableheader" . }}
-                        <div class="itemsTable">
-                            <table id="itemsTable" class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th class="tags-col" scope="col">Tags</th>
-                                    <th class="meta-col" scope="col">Metadata</th>
-                                    <th class="created-col" scope="col">Created At</th>
-                                    <th class="status-col" scope="col">Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{ range $i, $u := .Users }}
-                                <tr>
-                                    <td>{{ $u.Name }}</td>
-                                    <td class="userID" style="display: none;">
-                                        {{ $u.ID }}
-                                    </td>
-                                    <td class="tags-col">
-                                        {{ range $j, $tag := $u.Tags }}
-                                        <span class="badge bg-dark">{{ $tag }}</span>
-                                        {{ end }}
-                                    </td>
-                                    <td class="meta-col">
-                                        <div class="meta-div">
-                                            <pre id="meta-{{ $i }}"></pre>
-                                        </div>
-                                    </td>
-                                    <td class="created-col">{{ $u.CreatedAt }}</td>
-                                    <td>
-                                        {{ if eq $u.Status "enabled" }}
-                                        <span class="badge rounded-pill enabled-pill">{{ $u.Status }}</span>
-                                        {{ else if eq $u.Status "disabled" }}
-                                        <span class="badge rounded-pill disabled-pill">
+                  </div>
+
+                  <!-- add users modal -->
+                  <div
+                    class="modal fade"
+                    id="addUsersModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="addUsersModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title" id="addUsersModalLabel">Add Users</h1>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <form enctype="multipart/form-data" id="bulkusersform">
+                          <div class="modal-body">
+                            <div id="alertBulkMessage"></div>
+                            <div class="form-group mb-3">
+                              <label for="usersFile">
+                                Add csv file containing users names and passwords. Find a sample csv
+                                file
+                                <a
+                                  href="https://github.com/absmach/magistrala-ui/blob/main/samples/users.csv"
+                                  target="_blank"
+                                >
+                                  here
+                                </a>
+                              </label>
+                              <input
+                                type="file"
+                                class="form-control-file"
+                                id="usersFile"
+                                name="usersFile"
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Cancel
+                            </button>
+                            <button type="submit" value="upload" class="btn body-button">
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- modals end -->
+                </div>
+                <div class="table-responsive table-container">
+                  {{ template "tableheader" . }}
+                  <div class="itemsTable">
+                    <table id="itemsTable" class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th class="tags-col" scope="col">Tags</th>
+                          <th class="meta-col" scope="col">Metadata</th>
+                          <th class="created-col" scope="col">Created At</th>
+                          <th class="status-col" scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{ range $i, $u := .Users }}
+                          <tr>
+                            <td>{{ $u.Name }}</td>
+                            <td class="userID" style="display: none;">
+                              {{ $u.ID }}
+                            </td>
+                            <td class="tags-col">
+                              {{ range $j, $tag := $u.Tags }}
+                                <span class="badge bg-dark">{{ $tag }}</span>
+                              {{ end }}
+                            </td>
+                            <td class="meta-col">
+                              <div class="meta-div">
+                                <pre id="meta-{{ $i }}"></pre>
+                              </div>
+                            </td>
+                            <td class="created-col">{{ $u.CreatedAt }}</td>
+                            <td>
+                              {{ if eq $u.Status "enabled" }}
+                                <span class="badge rounded-pill enabled-pill">{{ $u.Status }}</span>
+                              {{ else if eq $u.Status "disabled" }}
+                                <span class="badge rounded-pill disabled-pill">
                                   {{ $u.Status }}
                                 </span>
-                                        {{ end }}
-                                    </td>
-                                </tr>
-                                <script>
-                                    attachFormatJsonWithPrettifyListener({
-                                        data: '{{ toJSON $u.Metadata }}',
-                                        id: "meta-{{ $i }}",
-                                    })
-                                </script>
-                                {{ end }}
-                                </tbody>
-                            </table>
-                        </div>
-                        {{ template "tablefooter" . }}
-                    </div>
+                              {{ end }}
+                            </td>
+                          </tr>
+                          <script>
+                            attachFormatJsonWithPrettifyListener({
+                              data: '{{ toJSON $u.Metadata }}',
+                              id: "meta-{{ $i }}",
+                            })
+                          </script>
+                        {{ end }}
+                      </tbody>
+                    </table>
+                  </div>
+                  {{ template "tablefooter" . }}
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var table = document.getElementById("itemsTable");
-        let pathPrefix = "{{ pathPrefix }}";
-        var rows = table.querySelectorAll("tbody tr");
-        rows.forEach(function (row) {
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var table = document.getElementById("itemsTable");
+          let pathPrefix = "{{ pathPrefix }}";
+          var rows = table.querySelectorAll("tbody tr");
+          rows.forEach(function (row) {
             var userID = row.querySelector(".userID").textContent.trim();
             row.onclick = () => {
-                window.location.href = `${pathPrefix}/users/${userID}`;
+              window.location.href = `${pathPrefix}/users/${userID}`;
             };
             row.classList.add("clickable-row");
+          });
         });
-    });
-    const userModal = new bootstrap.Modal(document.getElementById("addUserModal"));
-    const usersModal = new bootstrap.Modal(document.getElementById("addUsersModal"));
+        const userModal = new bootstrap.Modal(document.getElementById("addUserModal"));
+        const usersModal = new bootstrap.Modal(document.getElementById("addUsersModal"));
 
-    function openModal(modal) {
-        if (modal === "single") {
+        function openModal(modal) {
+          if (modal === "single") {
             userModal.show();
-        } else if (modal === "bulk") {
+          } else if (modal === "bulk") {
             usersModal.show();
+          }
         }
-    }
 
-    codeMirrorEditor({
-        textArea: "metadata",
-        button: "create-user-button",
-        value: {},
-    });
-</script>
-<script type="module">
-    import {
-        attachValidationListener,
-        validateName,
-        validateEmail,
-        validatePassword,
-        validateJSON,
-        validateStringArray,
-    } from "/js/validation.js";
-    import {submitCreateForm} from "/js/forms.js";
+        codeMirrorEditor({
+          textArea: "metadata",
+          button: "create-user-button",
+          value: {},
+        });
+      </script>      <script type="module">
+        import {
+          attachValidationListener,
+          validateName,
+          validateEmail,
+          validatePassword,
+          validateJSON,
+          validateStringArray,
+        } from "/js/validation.js";
+        import { submitCreateForm } from "/js/forms.js";
 
-    attachValidationListener({
-        buttonId: "create-user-button",
-        errorDivs: {
+        attachValidationListener({
+          buttonId: "create-user-button",
+          errorDivs: {
             name: "nameError",
             email: "emailError",
             secret: "secretError",
             metadata: "metadataError",
             userTags: "tagsError",
-        },
-        validations: {
+          },
+          validations: {
             name: validateName,
             email: validateEmail,
             secret: validatePassword,
             metadata: validateJSON,
             userTags: validateStringArray,
-        },
-        fields: {
+          },
+          fields: {
             name: "name-field",
             email: "email-field",
             secret: "secret-field",
             metadata: "metadata-field",
             userTags: "tags-field",
-        },
-    });
+          },
+        });
 
-    submitCreateForm({
-        url: '{{ printf "%s/users" pathPrefix }}',
-        formId: "userform",
-        alertDiv: "alertMessage",
-        modal: userModal,
-    });
+        submitCreateForm({
+          url: '{{ printf "%s/users" pathPrefix }}',
+          formId: "userform",
+          alertDiv: "alertMessage",
+          modal: userModal,
+        });
 
-    submitCreateForm({
-        url: '{{ printf "%s/users/bulk" pathPrefix }}',
-        formId: "bulkusersform",
-        alertDiv: "alertBulkMessage",
-        modal: usersModal,
-    });
-</script>
-</body>
-</html>
+        submitCreateForm({
+          url: '{{ printf "%s/users/bulk" pathPrefix }}',
+          formId: "bulkusersform",
+          alertDiv: "alertBulkMessage",
+          modal: usersModal,
+        });
+      </script>
+    </body>
+  </html>
 {{ end }}

@@ -2,272 +2,272 @@
 SPDX-License-Identifier: Apache-2.0 -->
 
 {{ define "bootstraps" }}
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Bootstraps</title>
-    {{ template "header" }}
-</head>
-<body>
-{{ template "navbar" . }}
-<div class="main-content pt-3">
-    <div class="container-fluid">
-        <div class="row-mb-3 p-3">
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <title>Bootstraps</title>
+      {{ template "header" }}
+    </head>
+    <body>
+      {{ template "navbar" . }}
+      <div class="main-content pt-3">
+        <div class="container-fluid">
+          <div class="row-mb-3 p-3">
             <div class="col-lg-12 mx-auto py-3">
-                {{ template "breadcrumb" . }}
-                <div class="row">
-                    <div class="buttons mb-3">
-                        <button type="button" class="btn body-button" onclick="openModal()">Add</button>
+              {{ template "breadcrumb" . }}
+              <div class="row">
+                <div class="buttons mb-3">
+                  <button type="button" class="btn body-button" onclick="openModal()">Add</button>
 
-                        <!-- Add Bootstrap Modal -->
-                        <div
-                                class="modal fade"
-                                id="addBootstrapModal"
-                                tabindex="-1"
-                                role="dialog"
-                                aria-labelledby="addBootstrapModalLabel"
-                                aria-hidden="true"
-                        >
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title" id="addBootstrapModalLabel">
-                                            Add Bootstrap Config
-                                        </h1>
-                                        <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                        ></button>
-                                    </div>
-                                    <form method="post">
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Bootstrap Name</label>
-                                                <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        name="name"
-                                                        id="name"
-                                                        aria-describedby="tagHelp"
-                                                        placeholder="Name"
-                                                />
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <label for="externalID" class="form-label">External ID</label>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="externalID"
-                                                            id="externalID"
-                                                            placeholder="External ID"
-                                                            required
-                                                    />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="externalKey" class="form-label">External Key</label>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="externalKey"
-                                                            id="externalKey"
-                                                            placeholder="External Key"
-                                                            required
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="things-select" class="form-label">Thing</label>
-                                                <input
-                                                        type="text"
-                                                        class="itemsFilter"
-                                                        name="thingFilter"
-                                                        id="thingFilter"
-                                                        placeholder="Filter by Thing name"
-                                                />
-                                                <select
-                                                        class="form-select"
-                                                        name="thingID"
-                                                        id="things-select"
-                                                        size="5"
-                                                        required
-                                                >
-                                                    <option disabled>select a thing</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="channels-select" class="form-label">Channels</label>
-                                                <input
-                                                        type="text"
-                                                        class="itemsFilter"
-                                                        name="channelFilter"
-                                                        id="channelFilter"
-                                                        placeholder="Filter by channel name"
-                                                />
-                                                <select
-                                                        class="form-select"
-                                                        name="channelID"
-                                                        id="channels-select"
-                                                        size="5"
-                                                        multiple
-                                                >
-                                                    <option disabled>select a channel</option>
-                                                </select>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <label for="clientCert" class="form-label">Client Cert</label>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="clientCert"
-                                                            id="clientCert"
-                                                            aria-describedby="tagHelp"
-                                                            placeholder="clientCert"
-                                                    />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="clientKey" class="form-label">Client Key</label>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="clientKey"
-                                                            id="clientKey"
-                                                            aria-describedby="tagHelp"
-                                                            placeholder="clientKey"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="CACert" class="form-label">CA Cert</label>
-                                                <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        name="CACert"
-                                                        id="CACert"
-                                                        aria-describedby="tagHelp"
-                                                        placeholder="CACert"
-                                                />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="content" class="form-label">Content</label>
-                                                <div class="content-field">
-                                                    <textarea name="content" id="content"></textarea>
-                                                </div>
-                                                <div id="contentHelp" class="form-text">
-                                                    Enter content in JSON format.
-                                                </div>
-                                                <div id="contentError" class="text-danger"></div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                Cancel
-                                            </button>
-                                            <button
-                                                    type="submit"
-                                                    id="create-bootstrap-button"
-                                                    class="btn body-button"
-                                                    onclick="submitItemList('channels', 'channelsList')"
-                                            >
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
+                  <!-- Add Bootstrap Modal -->
+                  <div
+                    class="modal fade"
+                    id="addBootstrapModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="addBootstrapModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title" id="addBootstrapModalLabel">
+                            Add Bootstrap Config
+                          </h1>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <form method="post">
+                          <div class="modal-body">
+                            <div class="mb-3">
+                              <label for="name" class="form-label">Bootstrap Name</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="name"
+                                id="name"
+                                aria-describedby="tagHelp"
+                                placeholder="Name"
+                              />
                             </div>
-                        </div>
+                            <div class="row mb-3">
+                              <div class="col-md-6">
+                                <label for="externalID" class="form-label">External ID</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  name="externalID"
+                                  id="externalID"
+                                  placeholder="External ID"
+                                  required
+                                />
+                              </div>
+                              <div class="col-md-6">
+                                <label for="externalKey" class="form-label">External Key</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  name="externalKey"
+                                  id="externalKey"
+                                  placeholder="External Key"
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="things-select" class="form-label">Thing</label>
+                              <input
+                                type="text"
+                                class="itemsFilter"
+                                name="thingFilter"
+                                id="thingFilter"
+                                placeholder="Filter by Thing name"
+                              />
+                              <select
+                                class="form-select"
+                                name="thingID"
+                                id="things-select"
+                                size="5"
+                                required
+                              >
+                                <option disabled>select a thing</option>
+                              </select>
+                            </div>
+                            <div class="mb-3">
+                              <label for="channels-select" class="form-label">Channels</label>
+                              <input
+                                type="text"
+                                class="itemsFilter"
+                                name="channelFilter"
+                                id="channelFilter"
+                                placeholder="Filter by channel name"
+                              />
+                              <select
+                                class="form-select"
+                                name="channelID"
+                                id="channels-select"
+                                size="5"
+                                multiple
+                              >
+                                <option disabled>select a channel</option>
+                              </select>
+                            </div>
+                            <div class="row mb-3">
+                              <div class="col-md-6">
+                                <label for="clientCert" class="form-label">Client Cert</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  name="clientCert"
+                                  id="clientCert"
+                                  aria-describedby="tagHelp"
+                                  placeholder="clientCert"
+                                />
+                              </div>
+                              <div class="col-md-6">
+                                <label for="clientKey" class="form-label">Client Key</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  name="clientKey"
+                                  id="clientKey"
+                                  aria-describedby="tagHelp"
+                                  placeholder="clientKey"
+                                />
+                              </div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="CACert" class="form-label">CA Cert</label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="CACert"
+                                id="CACert"
+                                aria-describedby="tagHelp"
+                                placeholder="CACert"
+                              />
+                            </div>
+                            <div class="mb-3">
+                              <label for="content" class="form-label">Content</label>
+                              <div class="content-field">
+                                <textarea name="content" id="content"></textarea>
+                              </div>
+                              <div id="contentHelp" class="form-text">
+                                Enter content in JSON format.
+                              </div>
+                              <div id="contentError" class="text-danger"></div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              id="create-bootstrap-button"
+                              class="btn body-button"
+                              onclick="submitItemList('channels', 'channelsList')"
+                            >
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                    <div class="table-responsive table-container">
-                        {{ template "tableheader" . }}
-                        <div class="itemsTable">
-                            <table id="itemsTable" class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Thing ID</th>
-                                    <th scope="col">External ID</th>
-                                    <th scope="col">State</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{ range $i, $t := .Bootstraps }}
-                                <tr onclick="viewBootstrap('{{ $t.ThingID }}')" class="clickable-row">
-                                    <td>{{ $t.Name }}</td>
-                                    <td>
-                                        <a href="{{ printf " %s/things/%s" pathPrefix $t.ThingID }}">
-                                        {{ $t.ThingID }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $t.ExternalID }}</td>
-                                    <td>
-                                        {{ if eq $t.State 0 }}
-                                        <span class="badge rounded-pill disabled-pill">Disabled</span>
-                                        {{ else }}
-                                        <span class="badge rounded-pill enabled-pill">Enabled</span>
-                                        {{ end }}
-                                    </td>
-                                </tr>
-                                {{ end }}
-                                </tbody>
-                            </table>
-                        </div>
-                        {{ template "tablefooter" . }}
-                    </div>
+                  </div>
                 </div>
+                <div class="table-responsive table-container">
+                  {{ template "tableheader" . }}
+                  <div class="itemsTable">
+                    <table id="itemsTable" class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Thing ID</th>
+                          <th scope="col">External ID</th>
+                          <th scope="col">State</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{ range $i, $t := .Bootstraps }}
+                          <tr onclick="viewBootstrap('{{ $t.ThingID }}')" class="clickable-row">
+                            <td>{{ $t.Name }}</td>
+                            <td>
+                              <a href="{{ printf "%s/things/%s" pathPrefix $t.ThingID }}">
+                                {{ $t.ThingID }}
+                              </a>
+                            </td>
+                            <td>{{ $t.ExternalID }}</td>
+                            <td>
+                              {{ if eq $t.State 0 }}
+                                <span class="badge rounded-pill disabled-pill">Disabled</span>
+                              {{ else }}
+                                <span class="badge rounded-pill enabled-pill">Enabled</span>
+                              {{ end }}
+                            </td>
+                          </tr>
+                        {{ end }}
+                      </tbody>
+                    </table>
+                  </div>
+                  {{ template "tablefooter" . }}
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<script>
-    const bootstrapsModal = new bootstrap.Modal(document.getElementById("addBootstrapModal"));
+      </div>
+      <script>
+        const bootstrapsModal = new bootstrap.Modal(document.getElementById("addBootstrapModal"));
 
-    function openModal() {
-        bootstrapsModal.show();
-    }
+        function openModal() {
+          bootstrapsModal.show();
+        }
 
-    codeMirrorEditor({
-        textArea: "content",
-        button: "create-bootstrap-button",
-        value: {},
-    });
-</script>
-<script type="module">
-    import {
-        attachValidationListener,
-        validateStringArray,
-        validateJSON,
-    } from "/js/validation.js";
-    import {fetchIndividualEntity} from "/js/infinitescroll.js";
+        codeMirrorEditor({
+          textArea: "content",
+          button: "create-bootstrap-button",
+          value: {},
+        });
+      </script>
+      <script type="module">
+        import {
+          attachValidationListener,
+          validateStringArray,
+          validateJSON,
+        } from "/js/validation.js";
+        import { fetchIndividualEntity } from "/js/infinitescroll.js";
 
-    attachValidationListener({
-        buttonId: "create-bootstrap-button",
-        errorDivs: {
+        attachValidationListener({
+          buttonId: "create-bootstrap-button",
+          errorDivs: {
             channels: "channelsError",
             content: "contentError",
-        },
-        validations: {
+          },
+          validations: {
             channels: validateStringArray,
             content: validateJSON,
-        },
-    });
+          },
+        });
 
-    fetchIndividualEntity({
-        input: "thingFilter",
-        itemSelect: "things-select",
-        item: "things",
-        pathPrefix: "{{ pathPrefix }}",
-    });
+        fetchIndividualEntity({
+          input: "thingFilter",
+          itemSelect: "things-select",
+          item: "things",
+          pathPrefix: "{{ pathPrefix }}",
+        });
 
-    fetchIndividualEntity({
-        input: "channelFilter",
-        itemSelect: "channels-select",
-        item: "channels",
-        pathPrefix: "{{ pathPrefix }}",
-    });
-</script>
-</body>
-</html>
+        fetchIndividualEntity({
+          input: "channelFilter",
+          itemSelect: "channels-select",
+          item: "channels",
+          pathPrefix: "{{ pathPrefix }}",
+        });
+      </script>
+    </body>
+  </html>
 {{ end }}

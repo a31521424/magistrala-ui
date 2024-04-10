@@ -2,211 +2,208 @@
 SPDX-License-Identifier: Apache-2.0 -->
 
 {{ define "domain" }}
-<!doctype html>
-<html lang="en">
-<head>
-    <title>domain</title>
-    {{ template "header" }}
-</head>
-<body>
-{{ template "navbar" . }}
-<div class="main-content pt-3">
-    <div class="container-fluid">
-        <div class="row-mb-3 p-3">
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <title>domain</title>
+      {{ template "header" }}
+    </head>
+    <body>
+      {{ template "navbar" . }}
+      <div class="main-content pt-3">
+        <div class="container-fluid">
+          <div class="row-mb-3 p-3">
             <div class="col-lg-12 pt-3">
-                {{ template "breadcrumb" . }}
+              {{ template "breadcrumb" . }}
             </div>
             <div class="col-lg-12 mx-auto py-3 org-col mt-5">
-                <div class="row mb-3 p-3">
-                    <div class="col-md-12">
-                        <p>
-                            Welcome to the Domain details page. You can update your domain details in this
-                            page.
-                        </p>
-                    </div>
+              <div class="row mb-3 p-3">
+                <div class="col-md-12">
+                  <p>
+                    Welcome to the Domain details page. You can update your domain details in this
+                    page.
+                  </p>
                 </div>
-                <div class="row mb-3 p-3">
-                    <h4 class="mb-3">Domain Information</h4>
-                    <div class="table-responsive">
-                        <table class="table border-top">
-                            <tbody>
-                            {{ $editButton := false }}
-                            {{ if (hasPermission .Permissions "edit") }}
-                            {{ $editButton = true }}
-                            {{ end }}
-                            <tr>
-                                <th>Domain Name</th>
-                                <td class="editable name-field" contenteditable="false" data-field="name">
-                                    {{ .Entity.Name }}
-                                </td>
-                                <td>
-                                    <button
-                                            class="edit-btn"
-                                            id="edit-name"
-                                            {{ if not $editButton }}disabled{{ end }}
-                                    >
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                    <div class="save-cancel-buttons" style="display: none">
-                                        <button class="save-btn" id="save-name">Save</button>
-                                        <button class="cancel-btn" id="cancel-name">Cancel</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Domain Tags</th>
-                                <td class="editable tags-field" contenteditable="false" data-field="tags">
-                                    {{ toSlice .Entity.Tags }}
-                                </td>
-                                <td>
-                                    <button
-                                            class="edit-btn"
-                                            id="edit-tags"
-                                            {{ if not $editButton }}disabled{{ end }}
-                                    >
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                    <div class="save-cancel-buttons" style="display: none">
-                                        <button class="save-btn" id="save-tags">Save</button>
-                                        <button class="cancel-btn" id="cancel-tags">Cancel</button>
-                                    </div>
-                                </td>
-                            </tr>
+              </div>
+              <div class="row mb-3 p-3">
+                <h4 class="mb-3">Domain Information</h4>
+                <div class="table-responsive">
+                  <table class="table border-top">
+                    <tbody>
+                      {{ $editButton := false }}
+                      {{ if (hasPermission .Permissions "edit") }}
+                        {{ $editButton = true }}
+                      {{ end }}
+                      <tr>
+                        <th>Domain Name</th>
+                        <td class="editable name-field" contenteditable="false" data-field="name">
+                          {{ .Entity.Name }}
+                        </td>
+                        <td>
+                          <button
+                            class="edit-btn"
+                            id="edit-name"
+                            {{ if not $editButton }}disabled{{ end }}
+                          >
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <div class="save-cancel-buttons" style="display: none">
+                            <button class="save-btn" id="save-name">Save</button>
+                            <button class="cancel-btn" id="cancel-name">Cancel</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Domain Tags</th>
+                        <td class="editable tags-field" contenteditable="false" data-field="tags">
+                          {{ toSlice .Entity.Tags }}
+                        </td>
+                        <td>
+                          <button
+                            class="edit-btn"
+                            id="edit-tags"
+                            {{ if not $editButton }}disabled{{ end }}
+                          >
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <div class="save-cancel-buttons" style="display: none">
+                            <button class="save-btn" id="save-tags">Save</button>
+                            <button class="cancel-btn" id="cancel-tags">Cancel</button>
+                          </div>
+                        </td>
+                      </tr>
 
-                            <tr>
-                                <th>Domain Alias</th>
-                                <td class="editable alias-field" contenteditable="false" data-field="alias">
-                                    {{ .Entity.Alias }}
-                                </td>
-                                <td>
-                                    <button
-                                            class="edit-btn"
-                                            id="edit-alias"
-                                            {{ if not $editButton }}disabled{{ end }}
-                                    >
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                    <div class="save-cancel-buttons" style="display: none">
-                                        <button class="save-btn" id="save-alias">Save</button>
-                                        <button class="cancel-btn" id="cancel-alias">Cancel</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Domain Metadata</th>
-                                <td>
-                                    <div>
-                                        <pre id="meta-data"></pre>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button
-                                            type="button"
-                                            class="edit-btn"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#editMetadataModal"
-                                            {{ if not $editButton }}disabled{{ end }}
-                                    >
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Created By</th>
-                                <td>{{ .Entity.CreatedBy }}</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Created At</th>
-                                <td>{{ .Entity.CreatedAt }}</td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div id="error-message" class="text-danger"></div>
-                        <div class="row-mb-3 mt-3">
-                            {{ if eq .Entity.Status "enabled" }}
-                            <button
-                                    type="button"
-                                    class="btn body-button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#disableEntityModal"
-                                    {{ if not (hasPermission .Permissions
-                            "admin") }}disabled{{ end }}
-                            >
-                            Disable Domain
-                            </button>
-                            {{ else }}
-                            <button
-                                    type="button"
-                                    class="btn body-button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#enableEntityModal"
-                                    {{ if not (hasPermission .Permissions
-                            "admin") }}disabled{{ end }}
-                            >
-                            Enable Domain
-                            </button>
-                            {{ end }}
-                        </div>
-                    </div>
+                      <tr>
+                        <th>Domain Alias</th>
+                        <td class="editable alias-field" contenteditable="false" data-field="alias">
+                          {{ .Entity.Alias }}
+                        </td>
+                        <td>
+                          <button
+                            class="edit-btn"
+                            id="edit-alias"
+                            {{ if not $editButton }}disabled{{ end }}
+                          >
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <div class="save-cancel-buttons" style="display: none">
+                            <button class="save-btn" id="save-alias">Save</button>
+                            <button class="cancel-btn" id="cancel-alias">Cancel</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Domain Metadata</th>
+                        <td>
+                          <div>
+                            <pre id="meta-data"></pre>
+                          </div>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="edit-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editMetadataModal"
+                            {{ if not $editButton }}disabled{{ end }}
+                          >
+                            <i class="fas fa-pencil-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="text-muted">Created By</th>
+                        <td>{{ .Entity.CreatedBy }}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th class="text-muted">Created At</th>
+                        <td>{{ .Entity.CreatedAt }}</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div id="error-message" class="text-danger"></div>
+                  <div class="row-mb-3 mt-3">
+                    {{ if eq .Entity.Status "enabled" }}
+                      <button
+                        type="button"
+                        class="btn body-button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#disableEntityModal"
+                        {{ if not (hasPermission .Permissions "admin") }}disabled{{ end }}
+                      >
+                        Disable Domain
+                      </button>
+                    {{ else }}
+                      <button
+                        type="button"
+                        class="btn body-button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#enableEntityModal"
+                        {{ if not (hasPermission .Permissions "admin") }}disabled{{ end }}
+                      >
+                        Enable Domain
+                      </button>
+                    {{ end }}
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
 
-    <!-- status update modals -->
-    {{ template "statusupdate" . }}
+        <!-- status update modals -->
+        {{ template "statusupdate" . }}
 
-</div>
-<script>
-    var metadata = "{{ toJSON .Entity.Metadata }}";
-    var parsedMetadata = JSON.parse(metadata);
+      </div>
+      <script>
+        var metadata = "{{ toJSON .Entity.Metadata }}";
+        var parsedMetadata = JSON.parse(metadata);
 
-    attachFormatJsonWithPrettifyListener({
-        id: "meta-data",
-        data: metadata,
-    });
+        attachFormatJsonWithPrettifyListener({
+          id: "meta-data",
+          data: metadata,
+        });
 
-    codeMirrorEditor({
-        textArea: "metadataTextArea",
-        button: "save-metadata",
-        value: parsedMetadata,
-    });
-</script>
-<script type="module">
-    import {attachEditRowListener, updateName, updateMetadata, updateTags, updateDescription} from "/js/update.js";
+        codeMirrorEditor({
+          textArea: "metadataTextArea",
+          button: "save-metadata",
+          value: parsedMetadata,
+        });
+      </script>      <script type="module">
+        import { attachEditRowListener, updateName, updateMetadata, updateTags, updateDescription } from "/js/update.js";
 
-    attachEditRowListener(
-        {
+        attachEditRowListener(
+          {
             entity: "domains",
             id: "{{ .Entity.ID }}",
             rows: {
-                name: updateName,
-                tags: updateTags,
-                alias: updateDescription,
+              name:updateName,
+              tags:updateTags,
+              alias:updateDescription,
             },
             errorDiv: "error-message",
             fields: {
-                name: "name-field",
-                alias: "alias-field",
-                tags: "tags-field",
+              name: "name-field",
+              alias: "alias-field",
+              tags: "tags-field",
             },
             pathPrefix: "{{ pathPrefix }}",
-        }
-    );
+          }
+        );
 
-    updateMetadata({
-        textArea: "metadataTextArea",
-        field: "metadata",
-        alertDiv: "metadataError",
-        fieldName: "metadata-field",
-        id: "{{ .Entity.ID }}",
-        entity: "domains",
-        button: "save-metadata",
-        pathPrefix: "{{ pathPrefix }}",
-    });
-</script>
-</body>
-</html>
+        updateMetadata({
+          textArea: "metadataTextArea",
+          field:"metadata",
+          alertDiv: "metadataError",
+          fieldName: "metadata-field",
+          id: "{{ .Entity.ID }}",
+          entity: "domains",
+          button: "save-metadata",
+          pathPrefix: "{{ pathPrefix }}",
+        });
+      </script>
+    </body>
+  </html>
 {{ end }}

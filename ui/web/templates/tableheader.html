@@ -2,61 +2,61 @@
 SPDX-License-Identifier: Apache-2.0 -->
 
 {{ define "tableheader" }}
-<div class="row-mb-3 d-flex flex-row justify-content-between mb-3">
+  <div class="row-mb-3 d-flex flex-row justify-content-between mb-3">
     <div class="d-flex flex-row justify-content-start mb-2">
-        <div class="dropdown border">
-            <button
-                    class="btn btn-light dropdown-toggle"
-                    type="button"
-                    id="itemsPerPageDropdown"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-            >
-                {{ .Limit }}
-            </button>
-            <ul class="dropdown-menu itemsPerPage" aria-labelledby="itemsPerPageDropdown">
-                <li>
-                    <a class="dropdown-item" href="?limit=5" id="limit5">5</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="?limit=10" id="limit10">10</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="?limit=20" id="limit20">20</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="?limit=50" id="limit50">50</a>
-                </li>
-            </ul>
-        </div>
-        <span class="align-self-center mx-2">Items per page</span>
+      <div class="dropdown border">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="itemsPerPageDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {{ .Limit }}
+        </button>
+        <ul class="dropdown-menu itemsPerPage" aria-labelledby="itemsPerPageDropdown">
+          <li>
+            <a class="dropdown-item" href="?limit=5" id="limit5">5</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="?limit=10" id="limit10">10</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="?limit=20" id="limit20">20</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="?limit=50" id="limit50">50</a>
+          </li>
+        </ul>
+      </div>
+      <span class="align-self-center mx-2">Items per page</span>
     </div>
     {{ if isset "StatusOptions" . }}
-    <button
-            class="btn btn-light dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            id="statusDropdown"
-    >
+      <button
+        class="btn btn-light dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        id="statusDropdown"
+      >
         <i class="fas fa-filter"></i>
         Status
         {{ if .Status }}
-        :
-        {{ .Status }}
+          :
+          {{ .Status }}
         {{ else }}
-        : enabled
+          : enabled
         {{ end }}
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="statusDropdown">
         {{ range .StatusOptions }}
-        <li>
+          <li>
             <a class="dropdown-item " id="{{ . }}Status">
-                {{ . }}
+              {{ . }}
             </a>
-        </li>
+          </li>
         {{ end }}
-    </ul>
+      </ul>
     {{ end }}
-</div>
+  </div>
 {{ end }}
