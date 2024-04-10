@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0 -->
   <!doctype html>
   <html lang="en">
     <head>
-      <title>Users</title>
+      <title>用户</title>
       {{ template "header" }}
     </head>
     <body>
@@ -18,10 +18,10 @@ SPDX-License-Identifier: Apache-2.0 -->
               <div class="row">
                 <div class="buttons mb-3">
                   <button class="btn body-button" type="button" onclick="openModal('single')">
-                    Add User
+                    添加用户
                   </button>
                   <button class="btn body-button" type="button" onclick="openModal('bulk')">
-                    Add Users
+                    添加用户
                   </button>
                   <!-- modals -->
                   <!-- add user modal -->
@@ -36,7 +36,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title" id="addUserModalLabel">Add User</h1>
+                          <h1 class="modal-title" id="addUserModalLabel">添加用户</h1>
                           <button
                             type="button"
                             class="btn-close"
@@ -48,40 +48,40 @@ SPDX-License-Identifier: Apache-2.0 -->
                           <div class="modal-body">
                             <div id="alertMessage"></div>
                             <div class="mb-3">
-                              <label for="name" class="form-label">Name</label>
+                              <label for="name" class="form-label">名称</label>
                               <input
                                 type="text"
                                 class="form-control name-field"
                                 name="name"
                                 id="name"
-                                placeholder="User Name"
+                                placeholder="用户名"
                               />
                               <div id="nameError" class="text-danger"></div>
                             </div>
                             <div class="mb-3">
-                              <label for="email" class="form-label">Identity</label>
+                              <label for="email" class="form-label">身份</label>
                               <input
                                 type="email"
                                 class="form-control email-field"
                                 name="identity"
                                 id="email"
-                                placeholder="User Email"
+                                placeholder="用户邮箱"
                               />
                               <div id="emailError" class="text-danger"></div>
                             </div>
                             <div class="mb-3">
-                              <label for="secret" class="form-label">Secret</label>
+                              <label for="secret" class="form-label">密码</label>
                               <input
                                 type="text"
                                 class="form-control secret-field"
                                 name="secret"
                                 id="secret"
-                                placeholder="User Password"
+                                placeholder="用户密码"
                               />
                               <div id="secretError" class="text-danger"></div>
                             </div>
                             <div class="mb-3">
-                              <label for="userTags" class="form-label">Tags</label>
+                              <label for="userTags" class="form-label">标签</label>
                               <div id="usersTagsList" onclick="deleteItem(event)"></div>
                               <input
                                 type="text"
@@ -90,28 +90,28 @@ SPDX-License-Identifier: Apache-2.0 -->
                                 id="userTags"
                                 aria-describedby="tagHelp"
                                 onkeydown="addItem(event, 'userTags', 'usersTagsList')"
-                                placeholder="Add a tag"
+                                placeholder="添加标签"
                               />
                               <div id="tagHelp" class="form-text">
-                                Enter user tags as a string slice.
+                                以字符串切片形式输入用户标签。
                               </div>
                               <div id="tagsError" class="text-danger"></div>
                             </div>
                             <div class="mb-3">
-                              <label for="metadata" class="form-label">Metadata</label>
+                              <label for="metadata" class="form-label">元数据</label>
                               <div class="metadata-field">
                                 <textarea name="metadata" id="metadata"></textarea>
                               </div>
 
                               <div id="metadataHelp" class="form-text">
-                                Enter user metadata in JSON format.
+                                以JSON格式输入用户元数据。
                               </div>
                               <div id="metadataError" class="text-danger"></div>
                             </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                              Cancel
+                              取消
                             </button>
                             <button
                               type="submit"
@@ -119,7 +119,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                               id="create-user-button"
                               onclick="submitItemList('userTags', 'usersTagsList')"
                             >
-                              Submit
+                              提交
                             </button>
                           </div>
                         </form>
@@ -139,7 +139,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title" id="addUsersModalLabel">Add Users</h1>
+                          <h1 class="modal-title" id="addUsersModalLabel">添加用户</h1>
                           <button
                             type="button"
                             class="btn-close"
@@ -152,13 +152,13 @@ SPDX-License-Identifier: Apache-2.0 -->
                             <div id="alertBulkMessage"></div>
                             <div class="form-group mb-3">
                               <label for="usersFile">
-                                Add csv file containing users names and passwords. Find a sample csv
+                                添加包含用户名称和密码的csv文件。找到一个示例csv文件
                                 file
                                 <a
                                   href="https://github.com/absmach/magistrala-ui/blob/main/samples/users.csv"
                                   target="_blank"
                                 >
-                                  here
+                                  这里
                                 </a>
                               </label>
                               <input
@@ -172,10 +172,10 @@ SPDX-License-Identifier: Apache-2.0 -->
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                              Cancel
+                              取消
                             </button>
                             <button type="submit" value="upload" class="btn body-button">
-                              Submit
+                              提交
                             </button>
                           </div>
                         </form>
@@ -190,11 +190,11 @@ SPDX-License-Identifier: Apache-2.0 -->
                     <table id="itemsTable" class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">Name</th>
-                          <th class="tags-col" scope="col">Tags</th>
-                          <th class="meta-col" scope="col">Metadata</th>
-                          <th class="created-col" scope="col">Created At</th>
-                          <th class="status-col" scope="col">Status</th>
+                          <th scope="col">名称</th>
+                          <th class="tags-col" scope="col">标签</th>
+                          <th class="meta-col" scope="col">元数据</th>
+                          <th class="created-col" scope="col">创建时间</th>
+                          <th class="status-col" scope="col">状态</th>
                         </tr>
                       </thead>
                       <tbody>
