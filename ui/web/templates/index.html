@@ -23,7 +23,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                     >
                       <div>
                         <h1>{{ .Summary.TotalUsers }}</h1>
-                        <span>Users</span>
+                        <span>用户</span>
                       </div>
                       <div>
                         <span class="fas fa-users"></span>
@@ -39,7 +39,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                     >
                       <div>
                         <h1>{{ .Summary.TotalThings }}</h1>
-                        <span>Things</span>
+                        <span>设备</span>
                       </div>
                       <div>
                         <span class="fas fa-microchip"></span>
@@ -55,7 +55,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                     >
                       <div>
                         <h1>{{ .Summary.TotalGroups }}</h1>
-                        <span>Groups</span>
+                        <span>分组</span>
                       </div>
                       <div>
                         <span class="fas fa-layer-group"></span>
@@ -71,7 +71,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                     >
                       <div>
                         <h1>{{ .Summary.TotalChannels }}</h1>
-                        <span>Channels</span>
+                        <span>通道</span>
                       </div>
                       <div>
                         <span class="fas fa-microchip"></span>
@@ -106,23 +106,23 @@ SPDX-License-Identifier: Apache-2.0 -->
         var dataCategories = {
           users: [
             ["Status", "Count"],
-            ["Enabled Users", enabledUsers],
-            ["Disabled Users", disabledUsers],
+            ["已启用用户", enabledUsers],
+            ["已禁用用户", disabledUsers],
           ],
           things: [
             ["Status", "Count"],
-            ["Enabled Things", enabledThings],
-            ["Disabled Things", disabledThings],
+            ["已启用设备", enabledThings],
+            ["已禁用设备", disabledThings],
           ],
           channels: [
             ["Status", "Count"],
-            ["Enabled Channels", enabledChannels],
-            ["Disabled Channels", disabledChannels],
+            ["已启用通道", enabledChannels],
+            ["已禁用通道", disabledChannels],
           ],
           groups: [
             ["Status", "Count"],
-            ["Enabled Groups", enabledGroups],
-            ["Disabled Groups", disabledGroups],
+            ["已启用分组", enabledGroups],
+            ["已禁用分组", disabledGroups],
           ],
         };
 
