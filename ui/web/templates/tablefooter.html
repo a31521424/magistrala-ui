@@ -11,7 +11,7 @@ SPDX-License-Identifier: Apache-2.0 -->
       {{ $prevPage := sub $currentPage 1 }}
       {{ if le $prevPage 0 }}
         <li class="page-item disabled">
-          <span class="page-link">Previous</span>
+          <span class="page-link">上一页</span>
         </li>
       {{ else }}
         <li class="page-item">
@@ -38,7 +38,7 @@ SPDX-License-Identifier: Apache-2.0 -->
         $totalPages
       }}
         <li class="page-item disabled">
-          <span class="page-link">Next</span>
+          <span class="page-link">下一页</span>
         </li>
       {{ else }}
         <li class="page-item">

@@ -29,7 +29,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           </li>
         </ul>
       </div>
-      <span class="align-self-center mx-2">Items per page</span>
+      <span class="align-self-center mx-2">每页数量</span>
     </div>
     {{ if isset "StatusOptions" . }}
       <button
@@ -40,7 +40,7 @@ SPDX-License-Identifier: Apache-2.0 -->
         id="statusDropdown"
       >
         <i class="fas fa-filter"></i>
-        Status
+        状态
         {{ if .Status }}
           :
           {{ .Status }}
