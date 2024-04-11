@@ -24,7 +24,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           class="nav-link sidebar-link {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
         >
           <i class="fas fa-home"></i>
-          <span>Home Page</span>
+          <span>主页</span>
         </a>
       </li>
 
@@ -36,7 +36,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           class="nav-link sidebar-link {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
         >
           <i class="fas fa-chart-line"></i>
-          <span>Dashboards</span>
+          <span>仪表盘</span>
         </a>
       </li>
 
@@ -45,7 +45,7 @@ SPDX-License-Identifier: Apache-2.0 -->
     </div>
 
     <!-- Heading -->
-    <div class="sidebar-heading mb-3">DOMAINS MANAGEMENT</div>
+    <div class="sidebar-heading mb-3">域管理</div>
 
     <li class="nav-item mb-2 mx-2" id="domains-sidebar-link">
       {{ $navbarActive := "domains" }}
@@ -54,7 +54,7 @@ SPDX-License-Identifier: Apache-2.0 -->
         href="{{ printf "%s/domains" pathPrefix }}"
       >
         <i class="fa-solid fa-building"></i>
-        <span>Domains</span>
+        <span>域</span>
       </a>
     </li>
 
@@ -68,7 +68,7 @@ SPDX-License-Identifier: Apache-2.0 -->
         id="invitations"
       >
         <i class="fa-solid fa-envelope"></i>
-        <span>Invitations</span>
+        <span>邀请</span>
       </a>
     </li>
 
@@ -101,7 +101,7 @@ SPDX-License-Identifier: Apache-2.0 -->
               href="{{ printf "%s/domains/%s" pathPrefix .Session.Domain.ID }}"
             >
               <i class="fa-solid fa-building"></i>
-              <span>Domain</span>
+              <span>域</span>
             </a>
           </li>
           <li class="nav-item mb-2 mx-2">
@@ -112,7 +112,7 @@ SPDX-License-Identifier: Apache-2.0 -->
               class="nav-link  {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
             >
               <i class="fa-solid fa-users"></i>
-              <span>Members</span>
+              <span>成员</span>
             </a>
           </li>
           <li class="nav-item mb-2 mx-2">
@@ -123,7 +123,7 @@ SPDX-License-Identifier: Apache-2.0 -->
               id="domainInvitations"
             >
               <i class="fa-solid fa-envelope"></i>
-              <span>Domain Invitations</span>
+              <span>域邀请</span>
             </a>
           </li>
         </ul>
@@ -139,7 +139,7 @@ SPDX-License-Identifier: Apache-2.0 -->
         {{ end }} {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
       >
         <i class="fas fa-users"></i>
-        <span>Users</span>
+        <span>用户</span>
       </a>
     </li>
 
@@ -148,7 +148,7 @@ SPDX-License-Identifier: Apache-2.0 -->
       <hr class="sidebar-divider my-0 text-light mb-3" />
 
       <!-- Heading -->
-      <div class="sidebar-heading mb-3">THINGS MANAGEMENT</div>
+      <div class="sidebar-heading mb-3">设备管理</div>
       <li class="nav-item mb-2 mx-2">
         {{ $navbarActive = "groups" }}
         <a
@@ -159,7 +159,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           {{ end }} {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
         >
           <i class="fas fa-layer-group"></i>
-          <span>Groups</span>
+          <span>分组</span>
         </a>
       </li>
       <li class="nav-item mb-2 mx-2">
@@ -172,7 +172,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           {{ end }} {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
         >
           <i class="fas fa-microchip"></i>
-          <span>Things</span>
+          <span>设备</span>
         </a>
       </li>
       <li class="nav-item mb-2 mx-2">
@@ -185,7 +185,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           {{ end }} {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
         >
           <i class="fas fa-exchange-alt"></i>
-          <span>Channels</span>
+          <span>通道</span>
         </a>
       </li>
       <li class="nav-item mb-2 mx-2">
@@ -198,7 +198,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           {{ end }} {{ if eq .NavbarActive $navbarActive }}active{{ end }}"
         >
           <i class="fas fa-solid fa-broadcast-tower"></i>
-          <span>Bootstrap</span>
+          <span>引导程序</span>
         </a>
       </li>
     </div>
@@ -230,7 +230,7 @@ SPDX-License-Identifier: Apache-2.0 -->
               class="doc-button btn"
               role="button"
             >
-              <span>Documentation</span>
+              <span>文档</span>
             </a>
           </li>
           <li class="nav-item dropdown me-3" id="domain-header-dropdown">
@@ -258,7 +258,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                   onclick="openCreateDomainModal()"
                 >
                   <i class="fa-solid fa-square-plus"></i>
-                  Create Domain
+                  创建域
                 </a>
               </li>
               <li><hr class="dropdown-divider" /></li>
@@ -342,19 +342,19 @@ SPDX-License-Identifier: Apache-2.0 -->
           <div class="modal-body">
             <div class="row mb-3">
               <div class="col-md-12">
-                <label for="domain-name" class="form-label">Name *</label>
+                <label for="domain-name" class="form-label">名称 *</label>
                 <input type="text" class="form-control p-2" name="name" id="domain-name" required />
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-md-12">
-                <label for="domain-alias" class="form-label">Alias</label>
+                <label for="domain-alias" class="form-label">别名</label>
                 <input type="text" class="form-control p-2" name="alias" id="domain-alias" />
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-md-12">
-                <label for="domain-tags" class="form-label">Tags</label>
+                <label for="domain-tags" class="form-label">标签</label>
                 <div id="tagsList" onclick="deleteItem(event)"></div>
                 <input
                   type="text"
@@ -365,30 +365,30 @@ SPDX-License-Identifier: Apache-2.0 -->
                   onkeydown="addItem(event, 'domain-tags', 'tagsList')"
                   placeholder="Add a tag"
                 />
-                <div id="tagHelp" class="form-text">Enter Domain tags as a string slice.</div>
+                <div id="tagHelp" class="form-text">以字符串切片形式输入域标签。</div>
                 <div id="domainTagsError" class="error-message text-danger"></div>
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-md-12">
-                <label for="domain-metadata" class="form-label">Metadata</label>
+                <label for="domain-metadata" class="form-label">元数据</label>
                 <div class="metadata-field">
                   <textarea name="metadata" id="domain-metadata"></textarea>
                 </div>
-                <div id="metadataHelp" class="form-text">Enter Domain metadata in JSON format.</div>
+                <div id="metadataHelp" class="form-text">以JSON格式输入域元数据。</div>
                 <div id="domainMetadataError" class="error-message text-danger"></div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
             <button
               type="submit"
               id="create-domain-button"
               class="btn body-button"
               onclick="submitItemList('domain-tags', 'tagsList')"
             >
-              Create
+              创建
             </button>
           </div>
         </form>
