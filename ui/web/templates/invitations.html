@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0 -->
   <!doctype html>
   <html lang="en">
     <head>
-      <title>Invitations</title>
+      <title>邀请</title>
       {{ template "header" }}
     </head>
     <body>
@@ -16,7 +16,7 @@ SPDX-License-Identifier: Apache-2.0 -->
             <div class="col-lg-12 mx-auto py-3">
               {{ template "breadcrumb" . }}
               <div class="row-mb-3 d-flex flex-row justify-content-between mb-3">
-                <h2>Invitations</h2>
+                <h2>邀请</h2>
                 <button
                   role="button"
                   class="btn body-button"
@@ -24,7 +24,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                   onclick="openInvitationModal()"
                 >
                   <i class="fa-solid fa-plus me-2"></i>
-                  <span>Invite User</span>
+                  <span>邀请用户</span>
                 </button>
               </div>
               <div class="table-responsive table-container">
@@ -80,7 +80,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                               action="{{ printf "%s/invitations/accept" pathPrefix }}"
                             >
                               <input type="hidden" name="domainID" value="{{ $v.DomainID }}" />
-                              <button type="submit" class="btn body-button">Accept</button>
+                              <button type="submit" class="btn body-button">接受</button>
                             </form>
                           </td>
                           <td>
@@ -90,7 +90,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                             >
                               <input type="hidden" name="userID" value="{{ $v.UserID }}" />
                               <input type="hidden" name="domainID" value="{{ $v.DomainID }}" />
-                              <button type="submit" class="btn btn-danger">Delete</button>
+                              <button type="submit" class="btn btn-danger">删除</button>
                             </form>
                           </td>
                           <td class="inviter" style="display: none;">{{ $v.InvitedBy }}</td>
@@ -118,7 +118,7 @@ SPDX-License-Identifier: Apache-2.0 -->
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title" id="invitationModalLabel">Invite User</h1>
+                <h1 class="modal-title" id="invitationModalLabel">邀请用户</h1>
                 <button
                   type="button"
                   class="btn-close"
@@ -129,24 +129,24 @@ SPDX-License-Identifier: Apache-2.0 -->
               <form id="invitation-form">
                 <div class="modal-body">
                   <div class="mb-3">
-                    <label for="users-scroll" class="form-label">User</label>
+                    <label for="users-scroll" class="form-label">用户</label>
                     <input
                       type="text"
                       name="userFilter"
                       id="userFilter"
-                      placeholder="Filter by User Name"
+                      placeholder="按用户名筛选"
                     />
                     <select class="form-select" name="userID" id="users-scroll" size="5" required>
-                      <option disabled>select a User</option>
+                      <option disabled>选择一个用户</option>
                     </select>
                   </div>
                   <div class="mb-3" id="domains-select">
-                    <label for="domains-scroll" class="form-label">Domain</label>
+                    <label for="domains-scroll" class="form-label">	域</label>
                     <input
                       type="text"
                       name="domainFilter"
                       id="domainFilter"
-                      placeholder="Filter by Domain"
+                      placeholder="按域筛选"
                     />
                     <select
                       class="form-select"
@@ -155,11 +155,11 @@ SPDX-License-Identifier: Apache-2.0 -->
                       size="5"
                       required
                     >
-                      <option disabled>select a domain</option>
+                      <option disabled>选择一个域</option>
                     </select>
                   </div>
                   <div class="mb-3">
-                    <label for="relation" class="form-label">Relation</label>
+                    <label for="relation" class="form-label">关系</label>
                     <select
                       class="form-control"
                       name="relation"
@@ -174,14 +174,14 @@ SPDX-License-Identifier: Apache-2.0 -->
                         </option>
                       {{ end }}
                     </select>
-                    <div id="relationHelp" class="form-text">Select Relation.</div>
+                    <div id="relationHelp" class="form-text">选择关系。</div>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cancel
+                    取消
                   </button>
-                  <button type="submit" class="btn body-button">Invite</button>
+                  <button type="submit" class="btn body-button">邀请</button>
                 </div>
               </form>
             </div>
