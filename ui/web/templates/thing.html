@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0 -->
   <!doctype html>
   <html lang="en">
     <head>
-      <title>Thing</title>
+      <title>设备</title>
       {{ template "header" }}
     </head>
     <body>
@@ -22,21 +22,21 @@ SPDX-License-Identifier: Apache-2.0 -->
                     href="{{ printf "%s/things/%s/channels" pathPrefix .Entity.ID }}"
                     role="button"
                   >
-                    Connect
+                  连接
                   </a>
                   <a
                     class="btn body-button"
                     href="{{ printf "%s/things/%s/users" pathPrefix .Entity.ID }}"
                     role="button"
                   >
-                    Share
+                  分享
                   </a>
                 </div>
                 <div class="table-responsive table-container">
                   <table id="itemsTable" class="table">
                     <thead>
                       <tr>
-                        <th scope="row">THING</th>
+                        <th scope="row">设备</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -45,7 +45,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         {{ $editButton = true }}
                       {{ end }}
                       <tr>
-                        <th>Name</th>
+                        <th>名称</th>
                         <td class="editable name-field" contenteditable="false" data-field="name">
                           {{ .Entity.Name }}
                         </td>
@@ -69,7 +69,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         <td></td>
                       </tr>
                       <tr>
-                        <th>Secret</th>
+                        <th>密钥</th>
                         <td
                           class="editable secret-field"
                           contenteditable="false"
@@ -92,7 +92,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         </td>
                       </tr>
                       <tr>
-                        <th>Tags</th>
+                        <th>标签</th>
                         <td class="editable tags-field" contenteditable="false" data-field="tags">
                           {{ toSlice .Entity.Tags }}
                         </td>
@@ -111,7 +111,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         </td>
                       </tr>
                       <tr>
-                        <th>Metadata</th>
+                        <th>元数据</th>
                         <td class="entityMeta-col">
                           <div>
                             <pre id="meta-data"></pre>
@@ -141,7 +141,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         data-bs-target="#disableEntityModal"
                         {{ if not (hasPermission .Permissions "delete") }}disabled{{ end }}
                       >
-                        Disable Thing
+                    禁用设备
                       </button>
                     {{ else }}
                       <button
@@ -151,7 +151,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         data-bs-target="#enableEntityModal"
                         {{ if not (hasPermission .Permissions "delete") }}disabled{{ end }}
                       >
-                        Enable Thing
+                    启用设备
                       </button>
                     {{ end }}
                   </div>
