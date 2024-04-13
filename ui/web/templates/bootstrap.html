@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0 -->
   <!doctype html>
   <html lang="en">
     <head>
-      <title>Bootstrap</title>
+      <title>引导程序</title>
       {{ template "header" }}
     </head>
     <body>
@@ -22,19 +22,19 @@ SPDX-License-Identifier: Apache-2.0 -->
                     class="btn body-button"
                     onclick="location.href= '/bootstraps/{{ .Bootstrap.ThingID }}/terminal'"
                   >
-                    Remote Terminal
+                    远程终端
                   </button>
                 </div>
                 <div class="table-responsive table-container">
                   <table id="itemsTable" class="table">
                     <thead>
                       <tr>
-                        <th scope="row">Bootstrap</th>
+                        <th scope="row">引导程序</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th>Name</th>
+                        <th>名称</th>
                         <td class="editable name-field" contenteditable="false" data-field="name">
                           {{ .Bootstrap.Name }}
                         </td>
@@ -43,13 +43,13 @@ SPDX-License-Identifier: Apache-2.0 -->
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <div class="save-cancel-buttons" style="display: none">
-                            <button class="save-btn" id="save-name">Save</button>
-                            <button class="cancel-btn" id="cancel-name">Cancel</button>
+                            <button class="save-btn" id="save-name">保存</button>
+                            <button class="cancel-btn" id="cancel-name">取消</button>
                           </div>
                         </td>
                       </tr>
                       <tr>
-                        <th>Thing</th>
+                        <th>设备</th>
                         <td>
                           <a href="{{ printf "%s/things/%s" pathPrefix .Bootstrap.ThingID }}">
                             {{ .Thing.Name }}
@@ -58,7 +58,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         <td></td>
                       </tr>
                       <tr>
-                        <th>Channels</th>
+                        <th>通道</th>
                         <td>
                           {{ range $i, $c := .Bootstrap.Channels }}
                             <span class="badge rounded-pill enabled-pill">
@@ -79,7 +79,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                         </td>
                       </tr>
                       <tr>
-                        <th>Client Cert</th>
+                        <th>客户端证书</th>
                         <td
                           class="editable clientCert-field"
                           contenteditable="false"
@@ -92,13 +92,13 @@ SPDX-License-Identifier: Apache-2.0 -->
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <div class="save-cancel-buttons" style="display: none">
-                            <button class="save-btn" id="save-clientCert">Save</button>
-                            <button class="cancel-btn" id="cancel-clientCert">Cancel</button>
+                            <button class="save-btn" id="save-clientCert">保存</button>
+                            <button class="cancel-btn" id="cancel-clientCert">取消</button>
                           </div>
                         </td>
                       </tr>
                       <tr>
-                        <th>Client Key</th>
+                        <th>客户端密钥</th>
                         <td
                           class="editable clientKey-field"
                           contenteditable="false"
@@ -111,13 +111,13 @@ SPDX-License-Identifier: Apache-2.0 -->
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <div class="save-cancel-buttons" style="display: none">
-                            <button class="save-btn" id="save-clientKey">Save</button>
-                            <button class="cancel-btn" id="cancel-clientKey">Cancel</button>
+                            <button class="save-btn" id="save-clientKey">保存</button>
+                            <button class="cancel-btn" id="cancel-clientKey">取消</button>
                           </div>
                         </td>
                       </tr>
                       <tr>
-                        <th>CA Cert</th>
+                        <th>CA证书</th>
                         <td
                           class="editable CACert-field"
                           contenteditable="false"
@@ -130,13 +130,13 @@ SPDX-License-Identifier: Apache-2.0 -->
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <div class="save-cancel-buttons" style="display: none">
-                            <button class="save-btn" id="save-CACert">Save</button>
-                            <button class="cancel-btn" id="cancel-CACert">Cancel</button>
+                            <button class="save-btn" id="save-CACert">保存</button>
+                            <button class="cancel-btn" id="cancel-CACert">取消</button>
                           </div>
                         </td>
                       </tr>
                       <tr>
-                        <th>Content</th>
+                        <th>内容</th>
                         <td>
                           <div>
                             <pre id="content"></pre>
@@ -154,12 +154,12 @@ SPDX-License-Identifier: Apache-2.0 -->
                         </td>
                       </tr>
                       <tr>
-                        <th>State</th>
+                        <th>状态</th>
                         <td>
                           {{ if eq .Bootstrap.State 0 }}
-                            <span class="badge rounded-pill disabled-pill">Disabled</span>
+                            <span class="badge rounded-pill disabled-pill">已禁用</span>
                           {{ else }}
-                            <span class="badge rounded-pill enabled-pill">Enabled</span>
+                            <span class="badge rounded-pill enabled-pill">已启用</span>
                           {{ end }}
                         </td>
                         <td></td>
@@ -174,7 +174,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                       data-bs-toggle="modal"
                       data-bs-target="#deleteBootstrapModal"
                     >
-                      Delete Configuration
+                      删除配置
                     </button>
                     <button
                       type="button"
@@ -182,7 +182,7 @@ SPDX-License-Identifier: Apache-2.0 -->
                       data-bs-toggle="modal"
                       data-bs-target="#UpdateBootstrapState"
                     >
-                      Update State
+                      更新状态
                     </button>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ SPDX-License-Identifier: Apache-2.0 -->
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="editChannelsModalLabel">Edit Channels</h5>
+                  <h5 class="modal-title" id="editChannelsModalLabel">编辑通道</h5>
                   <button
                     type="button"
                     class="btn-close"
@@ -259,7 +259,7 @@ SPDX-License-Identifier: Apache-2.0 -->
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="editContentModalLabel">Edit Content</h5>
+                  <h5 class="modal-title" id="editContentModalLabel">编辑内容</h5>
                   <button
                     type="button"
                     class="btn-close"
@@ -297,7 +297,7 @@ SPDX-License-Identifier: Apache-2.0 -->
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="deleteBootstrapModalLabel">Delete Configuration</h5>
+                  <h5 class="modal-title" id="deleteBootstrapModalLabel">删除配置</h5>
                   <button
                     type="button"
                     class="btn-close"
@@ -340,7 +340,7 @@ SPDX-License-Identifier: Apache-2.0 -->
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="UpdateBootstrapStateLabel">
-                    Update Configuration State
+                    更新配置状态
                   </h5>
                   <button
                     type="button"
